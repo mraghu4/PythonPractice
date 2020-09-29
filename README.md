@@ -1,2 +1,2 @@
 # PythonPractice
-Programs for different python scripts
+Programs covering different python concepts
