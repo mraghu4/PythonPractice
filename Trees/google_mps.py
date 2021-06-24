@@ -30,29 +30,42 @@ class Search:
         
     def parse(self,tree):
         childs = []
+        print(tree)
+        print(tree.values())
+        if not tree.values():
+           return Node(tree)
         for node in tree.keys():
-            if tree[node].keys() == None:
-                print(node)
-                return Node(node)
             childs.append(self.parse(tree[node]))
-        n = Node(tree)
+        n = Node(node)
         n.childs = childs
+        #print(node)
         return n    
         	
     def find(self,node,place):
-        #print(node.Name)
         if not node.childs:
            return
-        for node in node.childs:
-            if place == node.Name:
+        for child in node.childs:
+            if place == child.Name:
                print("palce found")
                exit()
             self.find(node,place)
      
+    def print_tree(self,node):
+        print("Node:{}".format(node.Name))
+        if not node.childs:
+           return
+        for child in node.childs:
+            print("Node:{}".format(node.Name))
+            self.print_tree(child)
+       
+
+
     def srch(self,place):
        self.root = self.parse(tree)
-       self.find(self.root,place)
+       #self.print_tree(self.root)
+       #self.find(self.root,place)
         
 	
 s = Search(tree)
-s.srch("vij")
+if s.srch("vij") == None:
+   print("Not found")
